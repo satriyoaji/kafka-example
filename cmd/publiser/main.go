@@ -9,6 +9,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var kafkaTopic = "test_topic"
+
 func main() {
 	// Setup Logging
 	customFormatter := new(logrus.TextFormatter)
@@ -37,7 +39,7 @@ func main() {
 
 	for i := 1; i <= 10; i++ {
 		msg := fmt.Sprintf("message number %v", i)
-		err := kafka.SendMessage("test_topic", msg)
+		err := kafka.SendMessage(kafkaTopic, msg)
 		if err != nil {
 			panic(err)
 		}
