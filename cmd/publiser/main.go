@@ -12,12 +12,12 @@ import (
 func main() {
 	// Setup Logging
 	customFormatter := new(logrus.TextFormatter)
-	customFormatter.TimestampFormat = "2006-01-02 15:04:05"
+	customFormatter.TimestampFormat = time.Now().String()
 	customFormatter.FullTimestamp = true
 	logrus.SetFormatter(customFormatter)
 
 	kafkaConfig := getKafkaConfig("", "")
-	producers, err := sarama.NewSyncProducer([]string{"kafka:9092"}, kafkaConfig)
+	producers, err := sarama.NewSyncProducer([]string{"127.0.0.1:9092"}, kafkaConfig)
 	if err != nil {
 		logrus.Errorf("Unable to create kafka producer got error %v", err)
 		return

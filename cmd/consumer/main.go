@@ -13,13 +13,13 @@ import (
 func main() {
 	// Setup Logging
 	customFormatter := new(logrus.TextFormatter)
-	customFormatter.TimestampFormat = "2006-01-02 15:04:05"
+	customFormatter.TimestampFormat = time.Now().String()
 	customFormatter.FullTimestamp = true
 	logrus.SetFormatter(customFormatter)
 
 	kafkaConfig := getKafkaConfig("", "")
 
-	consumers, err := sarama.NewConsumer([]string{"kafka:9092"}, kafkaConfig)
+	consumers, err := sarama.NewConsumer([]string{"127.0.0.1:9092"}, kafkaConfig)
 	if err != nil {
 		logrus.Errorf("Error create kakfa consumer got error %v", err)
 	}
