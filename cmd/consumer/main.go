@@ -10,6 +10,8 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
+var kafkaTopic = "test_topic"
+
 func main() {
 	// Setup Logging
 	customFormatter := new(logrus.TextFormatter)
@@ -35,7 +37,7 @@ func main() {
 	}
 
 	signals := make(chan os.Signal, 1)
-	kafkaConsumer.Consume([]string{"test_topic"}, signals)
+	kafkaConsumer.Consume([]string{kafkaTopic}, signals)
 }
 
 func getKafkaConfig(username, password string) *sarama.Config {
